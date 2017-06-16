@@ -571,7 +571,7 @@ schema {
   query: Root
 }
 
-scalar Even = Int
+scalar Even as Int
 
 scalar Odd
 
@@ -783,10 +783,10 @@ type __Schema {
 # types in GraphQL as represented by the \`__TypeKind\` enum.
 #
 # Depending on the kind of a type, certain fields describe information about that
-# type. Scalar types provide no information beyond a name and description, while
-# Enum types provide their values. Object and Interface types provide the fields
-# they describe. Abstract types, Union and Interface, provide the Object types
-# possible at runtime. List and NonNull types compose other types.
+# type. Scalar types provide a name, descriptionand how they serialize, while Enum
+# types provide their possible values. Object and Interface types provide the
+# fields they describe. Abstract types, Union and Interface, provide the Object
+# types possible at runtime. List and NonNull types compose other types.
 type __Type {
   description: String
   enumValues(includeDeprecated: Boolean = false): [__EnumValue!]
@@ -801,7 +801,7 @@ type __Type {
 
 # An enum describing what kind of type a given \`__Type\` is.
 enum __TypeKind {
-  # Indicates this type is a scalar. \`ofType\` is a valid field.
+  # Indicates this type is a scalar. \`ofType\` may represent how this scalar is serialized.
   SCALAR
 
   # Indicates this type is an object. \`fields\` and \`interfaces\` are valid fields.
